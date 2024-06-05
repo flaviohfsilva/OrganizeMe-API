@@ -9,7 +9,7 @@ export class BookApiClient {
   search(query: string) {
     console.log('Client - Chegou aqui: ', query);
     const apiKey = process.env.BOOKS_API_KEY;
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}=lite&key=AIzaSyDa0P5IMgZS0M7u9O6Vs-OI7t_jtbjYloI`;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}=lite&key=${apiKey}`;
     try {
       const books = this.httpService.get(url).subscribe(
         (res) => {
