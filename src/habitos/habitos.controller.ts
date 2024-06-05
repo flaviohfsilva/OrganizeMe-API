@@ -1,8 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { HabitosService } from './habitos.service';
 import { CreateHabitoDto } from './dto/create-habito.dto';
 import { UpdateHabitoDto } from './dto/update-habito.dto';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Hábitos')
 @Controller('habitos')
 export class HabitosController {
   constructor(private readonly habitosService: HabitosService) {}
@@ -15,6 +24,11 @@ export class HabitosController {
   @Get()
   findAll() {
     return this.habitosService.findAll();
+  }
+
+  @Get('task')
+  findAllHabitsTask() {
+    return this.habitosService.findAllTaskHabits();
   }
 
   @Get(':id')

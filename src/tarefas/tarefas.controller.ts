@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { TarefasService } from './tarefas.service';
 import { CreateTarefaDto } from './dto/create-tarefa.dto';
 import { UpdateTarefaDto } from './dto/update-tarefa.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Tarefas')
 @Controller('tarefas')
 export class TarefasController {
   constructor(private readonly tarefasService: TarefasService) {}
@@ -15,6 +25,16 @@ export class TarefasController {
   @Get()
   findAll() {
     return this.tarefasService.findAll();
+  }
+
+  @Get('habitos')
+  findAllTaskHabits() {
+    return this.tarefasService.findAllTaskHabits();
+  }
+
+  @Get('AdicionarTaskNaRotina/:id')
+  addAllTaskHabits(@Param('id') id: number) {
+    return this.tarefasService.addHabitTasksToRoutine(id);
   }
 
   @Get(':id')
