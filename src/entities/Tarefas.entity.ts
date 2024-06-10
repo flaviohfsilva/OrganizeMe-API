@@ -20,6 +20,12 @@ export class Tarefas {
   @Column('varchar', { name: 'nome_tag', nullable: true, length: 255 })
   nomeTag: string | null;
 
+  @Column('varchar', { name: 'cor_tarefa', nullable: true, length: 255 })
+  corTarefa: string | null;
+
+  @Column('varchar', { name: 'cor_tag', nullable: true, length: 255 })
+  corTag: string | null;
+
   @Column('tinyint', { name: 'status', width: 1, default: () => "'0'" })
   status: boolean;
 
@@ -29,7 +35,7 @@ export class Tarefas {
   @Column('tinyint', { name: 'habito', width: 1, default: () => "'0'" })
   habito: boolean;
 
-  @Column('datetime', { name: 'data_hora' })
+  @Column('datetime', { name: 'data_hora', default: () => 'CURRENT_TIMESTAMP' })
   dataHora: Date;
 
   @Column('int', { name: 'tempo_inicio', nullable: true })

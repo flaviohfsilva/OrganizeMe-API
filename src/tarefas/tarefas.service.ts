@@ -16,17 +16,17 @@ export class TarefasService {
   ) {}
 
   create(createTarefaDto: CreateTarefaDto) {
+    console.log('Chegou: ', createTarefaDto);
     const retorno: Retorno = {
       erro: false,
       mensagem: 'Tarefa criada com sucesso!',
     };
 
     try {
-      console.log(createTarefaDto);
       createTarefaDto.dataHora = new Date();
       const task = this.TarefasRP.create(createTarefaDto);
       this.TarefasRP.save(task);
-      return retorno;
+      return task;
     } catch (error) {
       retorno.erro = true;
       retorno.mensagem = `Erro ao criar tarefa, ${error}`;
@@ -37,6 +37,7 @@ export class TarefasService {
     const retorno: Retorno = {
       erro: false,
       mensagem: 'Busca realizada com sucesso!',
+      dados: [],
     };
 
     try {
@@ -96,6 +97,7 @@ export class TarefasService {
         ...task,
         id: undefined, // Remova o ID para criar uma nova entrada
         habito: false, // Ajuste para false para diferenciar as tarefas na rotina
+        status: false,
         dataHora: new Date(), // Ajuste a dataHora para o momento atual
       }));
       const taskAdded = await this.TarefasRP.save(tasksToAdd);

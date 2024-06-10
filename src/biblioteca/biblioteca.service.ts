@@ -145,12 +145,20 @@ export class BibliotecaService {
   async searchBooks(livro: string) {
     console.log('Busca: ', livro);
     const search = await this.bibliotecaClient.search(livro);
+    console.log('Oi: ', search);
     return search;
   }
 
   async saveBook(createBibliotecaDto: CreateBibliotecaDto, idStatus: number) {
     createBibliotecaDto.idStatus = idStatus;
     return this.create(createBibliotecaDto);
+  }
+
+  async saveArrayooks(
+    createBibliotecaDtos: CreateBibliotecaDto[],
+  ): Promise<Livros[]> {
+    const bibliotecas = this.BibliotecaRP.create(createBibliotecaDtos);
+    return await this.BibliotecaRP.save(bibliotecas);
   }
 
   calculatePercentBook(paginaAtual: number, paginaTotal: number): number {
