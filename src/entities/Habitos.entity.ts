@@ -24,6 +24,9 @@ export class Habitos {
   @Column('varchar', { name: 'img', length: 245 })
   img: string;
 
+  @Column('varchar', { name: 'cor_habito', length: 245 })
+  corHabito: string;
+
   @Column('varchar', { name: 'thumb_img', length: 245 })
   thumbImg: string;
 

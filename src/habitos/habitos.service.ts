@@ -66,9 +66,10 @@ export class HabitosService {
 
       // Ordenar as tarefas dentro de cada hábito
       habits.forEach((habit) => {
-        habit.tarefas.sort((a, b) => a.id - b.id); // Supondo que a propriedade de ordenação seja 'ordem'
+        habit.tarefas = habit.tarefas
+          .filter((task) => task.habito == true)
+          .sort((a, b) => a.id - b.id);
       });
-
       return habits;
     } catch (error) {
       retorno.erro = true;

@@ -23,7 +23,7 @@ export class Livros {
   @Column('varchar', { name: 'data_publicacao', length: 255 })
   dataPublicacao: string;
 
-  @Column('varchar', { name: 'descricao', length: 1000 })
+  @Column('varchar', { name: 'descricao', length: 2000 })
   descricao: string;
 
   @Column('varchar', { name: 'autor', length: 255 })
